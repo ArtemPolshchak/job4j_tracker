@@ -8,6 +8,16 @@ public class Item {
     private String name;
     private LocalDateTime created = LocalDateTime.now();
 
+    public Item() {
+
+    }
+    public Item(int id){
+
+    }
+    public Item(int id, String name) {
+
+    }
+
     public LocalDateTime getCreated() {
         return created;
     }
@@ -31,6 +41,7 @@ public class Item {
  class StartUI {
      public static void main(String[] args) {
          Item item = new Item();
+
 
          DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
          String currentDateTime = item.getCreated().format(formatter);
