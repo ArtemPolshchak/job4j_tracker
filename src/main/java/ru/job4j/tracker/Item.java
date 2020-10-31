@@ -11,6 +11,16 @@ public class Item {
     public Item() {
 
     }
+
+    @Override
+    public String toString() {
+        return "ru.job4j.tracker.Item{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", created=" + created +
+                '}';
+    }
+
     public Item(int id){
         this.id = id;
 
@@ -45,15 +55,4 @@ public class Item {
 
         this.name = name;
     }
-}
- class StartUI {
-     public static void main(String[] args) {
-         Item item = new Item();
-
-
-         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
-         String currentDateTime = item.getCreated().format(formatter);
-         System.out.println(currentDateTime);
-
-     }
 }
