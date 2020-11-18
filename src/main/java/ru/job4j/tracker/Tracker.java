@@ -13,6 +13,11 @@ public class Tracker {
         return item;
     }
 
+    public Item[] findAll() {
+
+        return Arrays.copyOf(items, size);
+
+    }
     public Item[] findAll(Item[] items) {
 
         return Arrays.copyOf(items, size);
