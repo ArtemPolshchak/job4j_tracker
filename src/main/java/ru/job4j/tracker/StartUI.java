@@ -5,7 +5,7 @@ public class StartUI {
 
     public static void createItem(Input input, Tracker tracker) {
         System.out.println("=== Create a new Item ===");
-        String name = input.askStr("Enter name: ");
+        String name = input.askStr("Enter items name: ");
         Item item = new Item(name);
         tracker.add(item);
         System.out.println("Item " + name + " added");
@@ -15,7 +15,7 @@ public class StartUI {
         System.out.println("=== Show all items ===");
         Item[] item = tracker.findAll();
         for (int i = 0; i < item.length; i++) {
-            System.out.println("id " + item[i].getId() + " name " + item[i].getName());
+            System.out.println(item[i]);
             //System.out.println(Arrays.toString(tracker.findAll(item)));
         }
     }
@@ -29,7 +29,6 @@ public class StartUI {
         Item item = new Item(name);
 
         if (tracker.replace(id, item)) {
-            tracker.replace(id, item);
             System.out.println("replace item " + firstItem.getName() + " to " + item.getName());
         } else {
             System.out.println("This id does not exist, please enter an existing id");
@@ -51,7 +50,12 @@ public class StartUI {
         System.out.println("=== Find item by id ===");
         int id = Integer.valueOf(input.askStr("enter Id"));
         Item item = tracker.findById(id);
-        System.out.println("Founded item: " + item.getName());
+
+        if (item != null) {
+            System.out.println("Founded item: " + item.getName());
+        } else {
+            System.out.println("Error, we can`t find item");
+        }
     }
 
     public static void findItemByName(Input input, Tracker tracker) {
