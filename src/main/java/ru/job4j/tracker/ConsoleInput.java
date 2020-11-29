@@ -4,10 +4,15 @@ import java.util.Scanner;
 
 public class ConsoleInput implements Input {
     private Scanner scanner = new Scanner(System.in);
+    private final Output out;
+
+    public ConsoleInput(Output out) {
+        this.out = out;
+    }
 
     @Override
     public String askStr(String question) {
-        System.out.println(question);
+        out.println(question);
         return scanner.nextLine();
     }
 
