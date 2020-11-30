@@ -19,7 +19,7 @@ public class FindByNameAction implements UserAction {
             out.println("Error, we can`t find item");
         } else {
             for (int i = 0; i < item.length; i++) {
-                out.println("id " + item[i].getId() + " name " + item[i].getName());
+                out.println("Item id=" + item[i].getId() + " name=" + item[i].getName());
             }
         }
         return true;
