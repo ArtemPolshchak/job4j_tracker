@@ -137,7 +137,6 @@ public class StartUITest {
         String is = System.lineSeparator();
         Input in = new StubInput(
                 new String[] {"0", "1", "1"}
-
         );
         UserAction[] actions = {
                 new FindByIdAction(output),
