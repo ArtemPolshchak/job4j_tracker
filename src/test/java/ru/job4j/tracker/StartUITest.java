@@ -133,12 +133,11 @@ public class StartUITest {
     public void FindByIdAction() {
         Output output = new StubOutput();
         Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("Ololo"));//трекер добавляет итем item с именем Ololo в массив итемов
+        Item item = tracker.add(new Item("Ololo"));
         String is = System.lineSeparator();
         Input in = new StubInput(
-                new String[] {"0", "1", "1"} //0 вызывает объект FindByIdAction
-                //затем вводится искомый id(1)
-                //затем вводится 1 вызывающий Exit
+                new String[] {"0", "1", "1"}
+
         );
         UserAction[] actions = {
                 new FindByIdAction(output),
