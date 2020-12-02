@@ -113,16 +113,17 @@ public class StartUITest {
     public void FindByNameAction() {
         Output output = new StubOutput();
         Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("FindItem"));
+        String is = System.lineSeparator();
+        Item item = tracker.add(new Item("ONEONE"));
         Input in = new StubInput(
-                new String[] {"0", "FindItem", "1"}
+                new String[] {"0", "ONEONE", "1"}
         );
         UserAction[] actions = {
                 new FindByNameAction(output),
                 new Exit(output)
         };
         new StartUI(output).init(in, tracker, actions);
-        assertThat(tracker.findByName(item.getName())[0].toString(), is(item.toString()));
+        assertThat(output.toString(), is("Menu." + is + "0. === Find items by name ===" + is + "1. Exit" + is + item.getName() + is + "Menu." + is + "0. === Find items by name ===" + is + "1. Exit" + is));
 
     }
 
@@ -132,17 +133,19 @@ public class StartUITest {
     public void FindByIdAction() {
         Output output = new StubOutput();
         Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("Item"));
-
+        Item item = tracker.add(new Item("Ololo"));//трекер добавляет итем item с именем Ololo в массив итемов
+        String is = System.lineSeparator();
         Input in = new StubInput(
-                new String[] {"0", String.valueOf(item.getId()), "1"}
+                new String[] {"0", "1", "1"} //0 вызывает объект FindByIdAction
+                //затем вводится искомый id(1)
+                //затем вводится 1 вызывающий Exit
         );
         UserAction[] actions = {
                 new FindByIdAction(output),
                 new Exit(output)
         };
         new StartUI(output).init(in, tracker, actions);
-        assertThat(tracker.findById(item.getId()).toString(), is(item.toString()));
+        assertThat(output.toString(), is("Menu." + is + "0. === Find item by id ===" + is + "1. Exit" + is + "Founded item: " + item.getName() + is + "Menu." + is + "0. === Find item by id ===" + is + "1. Exit" + is));
     }
 
 }
