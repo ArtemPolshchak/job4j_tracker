@@ -18,6 +18,7 @@ public class ConsoleInput implements Input {
 
     @Override
     public int askInt(String question) {
-        return Integer.valueOf(askStr(question));
+
+        return Integer.parseInt(askStr(question));
     }
 }
