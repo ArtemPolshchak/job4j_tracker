@@ -11,6 +11,26 @@ import static org.hamcrest.core.IsNull.nullValue;
 public class StartUITest {
 
     @Test
+    public void whenInvalidExit() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[] {"100", "0" }
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {
+                new Exit(out)
+        };
+        new StartUI(out).init(in, tracker,actions);
+        assertThat(out.toString(), is(String.format(
+                "Menu.%n"
+                        + "0. Exit%n"
+                        + "wrong input, you can select: 0.. 0%n"
+                        + "Menu.%n"
+                        + "0. Exit%n"
+        )));
+    }
+
+    @Test
     public void whenCreateItem() {
         Output output = new ConsoleOutput();
         Input in = new StubInput(
