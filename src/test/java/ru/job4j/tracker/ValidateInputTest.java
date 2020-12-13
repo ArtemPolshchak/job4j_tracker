@@ -41,13 +41,17 @@ public class ValidateInputTest {
 
     @Test
     public void whenMultipleNumber() {
-        String is = System.lineSeparator();
         Output out = new StubOutput();
         Input in = new StubInput(
-                new String[]{"2", "2"}
+                new String[]{"2", "3", "-1", "5", "20"}
         );
         ValidateInput input = new ValidateInput(out, in);
-        int selected = input.askInt("Enter menu: ");
-        assertThat(selected, is(2));
+        assertThat(input.askInt(""), is(2));
+        assertThat(input.askInt(""), is(3));
+        assertThat(input.askInt(""), is(-1));
+
+        assertThat(input.askInt(""), is(5));
+        assertThat(input.askInt(""), is(20));
+
     }
 }
