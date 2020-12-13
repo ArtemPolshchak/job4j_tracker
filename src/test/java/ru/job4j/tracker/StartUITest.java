@@ -20,7 +20,7 @@ public class StartUITest {
         UserAction[] actions = {
                 new Exit(out)
         };
-        new StartUI(out).init(in, tracker,actions);
+        new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(String.format(
                 "Menu.%n"
                         + "0. Exit%n"
@@ -78,8 +78,6 @@ public class StartUITest {
         assertThat(tracker.findById(item.getId()), is(nullValue()));
     }
 
-
-
     @Test
     public void whenExit() {
         Output out = new StubOutput();
@@ -92,8 +90,7 @@ public class StartUITest {
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu." + System.lineSeparator() +
-                        "0. Exit" + System.lineSeparator()
+                "Menu." + System.lineSeparator() + "0. Exit" + System.lineSeparator()
         ));
     }
 
@@ -122,8 +119,7 @@ public class StartUITest {
         };
 
         new StartUI(output).init(in, tracker, actions);
-        assertThat(output.toString(), is( "Menu." + is + "0. === Show all items ===" + is + "1. Exit" + is + item1.toString() + is +
-                item2.toString() + is + "Menu." + is + "0. === Show all items ===" + is + "1. Exit" + is));
+        assertThat(output.toString(), is("Menu." + is + "0. === Show all items ===" + is + "1. Exit" + is + item1.toString() + is + item2.toString() + is + "Menu." + is + "0. === Show all items ===" + is + "1. Exit" + is));
 
     }
 

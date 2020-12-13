@@ -1,7 +1,7 @@
 package ru.job4j.tracker;
 
 
-public class StartUI {
+ public class StartUI {
     private final Output out;
 
     public StartUI(Output out) {
@@ -19,7 +19,6 @@ public class StartUI {
             }
             UserAction action = actions[select];
             run = action.execute(input, tracker);
-
 
         }
     }
@@ -47,4 +46,4 @@ public class StartUI {
         };
         new StartUI(output).init(input, tracker, actions);
     }
-}
+ }
