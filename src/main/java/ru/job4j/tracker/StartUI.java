@@ -34,12 +34,12 @@ package ru.job4j.tracker;
     public static void main(String[] args) {
         Output output = new ConsoleOutput();
         Input input = new ValidateInput(output, new ConsoleInput(output));
-        Tracker tracker = new Tracker();
+        Tracker tracker = Tracker.getInstance();
         UserAction[] actions = {
                 new CreateAction(output),
                 new FindAllAction(output),
                 new ReplaceAction(output),
-                new DeleteActoin(output),
+                new DeleteAction(output),
                 new FindByIdAction(output),
                 new FindByNameAction(output),
                 new Exit(output)
