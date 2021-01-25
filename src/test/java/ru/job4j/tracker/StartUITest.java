@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
@@ -101,11 +102,11 @@ public class StartUITest {
         String is = System.lineSeparator();
 
         Item item1 = new Item();
-        item1.setName("One");
+        item1.setName("Item name");
         tracker.add(item1);
 
         Item item2 = new Item();
-        item2.setName("Two");
+        item2.setName("Item name");
         tracker.add(item2);
 
         Input in = new StubInput(
@@ -119,7 +120,7 @@ public class StartUITest {
         };
 
         new StartUI(output).init(in, tracker, actions);
-        assertThat(output.toString(), is("Menu." + is + "0. === Show all items ===" + is + "1. Exit" + is + item1.toString() + is + item2.toString() + is + "Menu." + is + "0. === Show all items ===" + is + "1. Exit" + is));
+        assertThat(output.toString(), is("Menu." + is + "0. === Show all items ===" + is + "1. Exit" + is + item2.toString() + is + item1.toString() + is + "Menu." + is + "0. === Show all items ===" + is + "1. Exit" + is));
 
     }
 
@@ -147,7 +148,7 @@ public class StartUITest {
     public void FindByIdAction() {
         Output output = new StubOutput();
         Tracker tracker = Tracker.getInstance();
-        Item item = tracker.add(new Item("Ololo"));
+        Item item = tracker.add(new Item("Item name"));
         String is = System.lineSeparator();
         Input in = new StubInput(
                 new String[] {"0", "1", "1"}
@@ -159,5 +160,6 @@ public class StartUITest {
         new StartUI(output).init(in, tracker, actions);
         assertThat(output.toString(), is("Menu." + is + "0. === Find item by id ===" + is + "1. Exit" + is + "Founded item: " + item.getName() + is + "Menu." + is + "0. === Find item by id ===" + is + "1. Exit" + is));
     }
+
 
 }
