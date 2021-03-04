@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class UserArrayList {
     public static void main(String[] args) {
+        //array
         ArrayList<String> list = new ArrayList<>();
         list.add("Petr");
         list.add("Ivan");
