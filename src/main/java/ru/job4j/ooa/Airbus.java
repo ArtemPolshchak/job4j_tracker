@@ -4,12 +4,10 @@ public final class Airbus extends Aircraft {
         private static final int COUNT_ENGINE = 2;
 
         private int countEngine;
+
         public void setCountEngine(int countEngine) {
             this.countEngine = countEngine;
         }
-
-
-
 
         private String name;
 
@@ -32,7 +30,6 @@ public final class Airbus extends Aircraft {
 
         public void printCountEngine() {
             int count = COUNT_ENGINE + 2;
-
 
             System.out.println("Количество двигателей равно: " + count);
         }
