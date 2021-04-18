@@ -8,7 +8,7 @@ public class PassportOffice {
     private Map<String, Citizen> citizens = new HashMap<>();
 
     public boolean add(Citizen citizen) {
-        boolean rsl = false;
+        boolean rsl = true;
         if (!citizens.containsKey(citizen.getPassport())){
             citizens.put(citizen.getPassport(), citizen);
         }
@@ -19,4 +19,12 @@ public class PassportOffice {
 
         return citizens.get(passport);
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "citizens=" + citizens +
+                '}';
+    }
+
 }
