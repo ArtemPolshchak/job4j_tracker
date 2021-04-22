@@ -3,14 +3,16 @@ package ru.job4j.collection;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class PassportOffice {
     private Map<String, Citizen> citizens = new HashMap<>();
 
     public boolean add(Citizen citizen) {
-        boolean rsl = true;
-        if (!citizens.containsKey(citizen.getPassport())){
+        boolean rsl = false;
+        if (!citizens.containsKey(citizen.getPassport())) {
             citizens.put(citizen.getPassport(), citizen);
+            rsl = true;
         }
         return rsl;
     }
@@ -20,11 +22,5 @@ public class PassportOffice {
         return citizens.get(passport);
     }
 
-    @Override
-    public String toString() {
-        return "{" +
-                "citizens=" + citizens +
-                '}';
-    }
 
 }
