@@ -3,6 +3,7 @@ package ru.job4j.bank;
 import java.util.*;
 
 public class BankService {
+
     private Map<User, List<Account>> users = new HashMap<>();
 
     public void addUser(User user) {
@@ -49,7 +50,6 @@ public class BankService {
         }
         return foundAccount;
     }
-
 
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite, double amount) {

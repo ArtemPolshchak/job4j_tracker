@@ -44,6 +44,7 @@ public class BankServiceTest {
         bank.addAccount(user.getPassport(), new Account("1122", 300D));
         assertThat(bank.findByRequisite("3434", "1122").getBalance(), is(300D));
     }
+
     @Test
     public void whenDelete() {
         User user = new User("3434", "Petr");
@@ -51,7 +52,6 @@ public class BankServiceTest {
         bankService.addUser(user);
         bankService.deleteUser(user);
         assertNull(bankService.findByPassport("3434"));
-
     }
 
 
