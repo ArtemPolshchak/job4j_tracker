@@ -4,12 +4,11 @@ import java.util.*;
 
 public class BankService {
 
-    private Map<User, List<Account>> users = new HashMap<>();
+   final private Map<User, List<Account>> users = new HashMap<>();
 
     public void addUser(User user) {
-         List<Account> accounts = new ArrayList<>();
-         if (!users.containsKey(user.getPassport())) {
-             users.put(user, accounts);
+         if (!users.containsKey(user)) {
+             users.putIfAbsent(user, new ArrayList<>());
          }
     }
 
@@ -20,18 +19,18 @@ public class BankService {
     public void addAccount(String passport, Account account) {
         User foundUser = findByPassport(passport);
         if (foundUser != null) {
-            List<Account> userAccs = users.get(findByPassport(passport));
+            List<Account> userAccs = users.get(foundUser);
             if (!userAccs.contains(account)) {
-                users.get(findByPassport(passport)).add(account);
+                users.get(foundUser).add(account);
             }
         }
     }
 
     public User findByPassport(String passport) {
         User rsl = null;
-        for (User key : users.keySet()) {
-            if (key.getPassport().equals(passport)) {
-                rsl = key;
+        for (User user : users.keySet()) {
+            if (user.getPassport().equals(passport)) {
+                rsl = user;
                 break;
             }
         }
@@ -39,16 +38,20 @@ public class BankService {
     }
 
     public Account findByRequisite(String passport, String requisite) {
-        Account foundAccount = null;
+        Account result = null;
+
         User user = findByPassport(passport);
-        List<Account> accounts = users.get(user);
-        for (Account accountForUser : accounts) {
-            if (accountForUser.getRequisite().equals(requisite)) {
-                foundAccount = accountForUser;
-                break;
+        if (user != null) {
+            List<Account> accounts = users.get(user);
+            for (Account account : accounts) {
+                if (account.getRequisite().equals(requisite)) {
+                    result = account;
+                    break;
+                }
             }
         }
-        return foundAccount;
+
+        return result;
     }
 
     public boolean transferMoney(String srcPassport, String srcRequisite,
