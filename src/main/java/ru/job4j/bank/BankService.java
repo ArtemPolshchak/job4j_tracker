@@ -7,7 +7,7 @@ public class BankService {
    final private Map<User, List<Account>> users = new HashMap<>();
 
     public void addUser(User user) {
-         if (!users.containsKey(user)) {
+         if (!users.containsKey(user.getPassport())) {
              users.putIfAbsent(user, new ArrayList<>());
          }
     }
