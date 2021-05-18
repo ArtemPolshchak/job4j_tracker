@@ -1,23 +1,18 @@
 package ru.job4j.tracker;
 
-import org.junit.Before;
 import org.junit.Test;
-
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
-
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 import static org.hamcrest.core.IsNull.nullValue;
 
 public class StartUITest {
 
-
     @Test
     public void findAllAction() {
         Output output = new StubOutput();
-        Tracker tracker = Tracker.getInstance();
+        Tracker tracker = new Tracker();
         String is = System.lineSeparator();
 
         Item item1 = new Item();
@@ -47,7 +42,7 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[] {"100", "0" }
         );
-        Tracker tracker = Tracker.getInstance();
+        Tracker tracker = new Tracker();
         UserAction[] actions = {
                 new Exit(out)
         };
@@ -67,7 +62,7 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[] {"0", "Item name", "1"}
         );
-        Tracker tracker = Tracker.getInstance();
+        Tracker tracker = new Tracker();
         UserAction[] actions = {
                 new CreateAction(output),
                 new Exit(output)
@@ -79,7 +74,7 @@ public class StartUITest {
     @Test
     public void whenReplaceItem() {
         Output output = new ConsoleOutput();
-        Tracker tracker = Tracker.getInstance();
+        Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("Replaced item"));
         String replacedName = "New item name";
         Input in = new StubInput(
@@ -99,7 +94,7 @@ public class StartUITest {
     @Test
     public void whenDeleteItem() {
         Output output = new ConsoleOutput();
-        Tracker tracker = Tracker.getInstance();
+        Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("Deleted item"));
         Input in = new StubInput(
                 new String[] {"0", String.valueOf(item.getId()), "1"}
@@ -118,7 +113,7 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[] {"0"}
         );
-        Tracker tracker = Tracker.getInstance();
+        Tracker tracker = new Tracker();
         UserAction[] actions = {
                 new Exit(out)
         };
@@ -131,7 +126,7 @@ public class StartUITest {
     @Test
     public void findByNameAction() {
         Output output = new StubOutput();
-        Tracker tracker = Tracker.getInstance();
+        Tracker tracker = new Tracker();
         String is = System.lineSeparator();
         Item item = tracker.add(new Item("ONEONE"));
         Input in = new StubInput(
@@ -146,11 +141,10 @@ public class StartUITest {
                 is("Menu." + is + "0. === Find items by name ===" + is + "1. Exit" + is + item.getName() + is + "Menu." + is + "0. === Find items by name ===" + is + "1. Exit" + is));
     }
 
-
     @Test
     public void findByIdAction() {
         Output output = new StubOutput();
-        Tracker tracker = Tracker.getInstance();
+        Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("Item name"));
         String is = System.lineSeparator();
         Input in = new StubInput(
