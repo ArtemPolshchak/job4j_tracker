@@ -15,10 +15,7 @@ public final class Tracker {
     }
 
     public List<Item> findAll() {
-        List<Item> copyItems = new ArrayList<>();
-        copyItems.addAll(0, items);
-        return copyItems;
-
+        return new ArrayList<Item>(items);
     }
 
     public Item findById(int id) {
@@ -31,12 +28,9 @@ public final class Tracker {
 
         List<Item> copyNames = new ArrayList<>();
         for (Item item : items) {
-
-            if (item != null) {
                 if (key.equals(item.getName())) {
                     copyNames.add(item);
                 }
-            }
         }
         return copyNames;
 
