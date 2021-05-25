@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class Tracker {
-
     private final List<Item> items = new ArrayList<>();
     private int ids = 1;
 
@@ -18,10 +17,7 @@ public final class Tracker {
         return new ArrayList<Item>(items);
     }
 
-
-
     public List<Item> findByName(String key) {
-
         List<Item> copyNames = new ArrayList<>();
         for (Item item : items) {
                 if (key.equals(item.getName())) {
@@ -29,11 +25,9 @@ public final class Tracker {
                 }
         }
         return copyNames;
-
     }
 
     public Item findById(int id) {
-
         int index = indexOf(id);
         return index != -1 ? items.get(index) : null;
     }
@@ -61,13 +55,10 @@ public final class Tracker {
 
     public boolean delete(int id) {
         int index = indexOf(id);
-
         boolean rsl = index != -1;
         if (rsl) {
             items.remove(index);
         }
-
         return rsl;
     }
-
 }

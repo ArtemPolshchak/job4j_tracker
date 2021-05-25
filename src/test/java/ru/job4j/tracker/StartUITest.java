@@ -85,7 +85,6 @@ public class StartUITest {
             new Exit(output)
         };
         new StartUI(output).init(in, tracker, Arrays.asList(actions));
-
         assertThat(Objects.requireNonNull(tracker.findById(item.getId())).getName(),
                 is(replacedName));
 
@@ -157,5 +156,4 @@ public class StartUITest {
         new StartUI(output).init(in, tracker, Arrays.asList(actions));
         assertThat(output.toString(), is("Menu." + is + "0. === Find item by id ===" + is + "1. Exit" + is + "Founded item: " + item.getName() + is + "Menu." + is + "0. === Find item by id ===" + is + "1. Exit" + is));
     }
-
 }

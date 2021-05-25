@@ -19,9 +19,7 @@ public class FindAllAction implements UserAction {
         List<Item> item  = tracker.findAll();
         for (Item value : item) {
             out.println(value);
-
         }
         return true;
     }
-
 }

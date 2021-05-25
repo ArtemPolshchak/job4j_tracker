@@ -21,7 +21,6 @@ public class StartUI {
             }
             UserAction action = actions.get(select);
             run = action.execute(input, tracker);
-
         }
     }
 
@@ -30,7 +29,6 @@ public class StartUI {
         for (int index = 0; index < actions.size(); index++) {
             out.println(index + ". " + actions.get(index).name());
         }
-
     }
 
     public static void main(String[] args) {
