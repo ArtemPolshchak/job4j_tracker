@@ -18,11 +18,7 @@ public final class Tracker {
         return new ArrayList<Item>(items);
     }
 
-    public Item findById(int id) {
-        int index = indexOf(id);
 
-        return index != -1 ? items.get(index) : null;
-    }
 
     public List<Item> findByName(String key) {
 
@@ -34,6 +30,12 @@ public final class Tracker {
         }
         return copyNames;
 
+    }
+
+    public Item findById(int id) {
+
+        int index = indexOf(id);
+        return index != -1 ? items.get(index) : null;
     }
 
     private int indexOf(int id) {
