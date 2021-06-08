@@ -53,6 +53,4 @@ public class BankServiceTest {
         bankService.deleteUser(user);
         assertNull(bankService.findByPassport("3434"));
     }
-
-
 }
