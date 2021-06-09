@@ -18,6 +18,7 @@ notifications:
       - artem.polschak@gmail.com
     on_success: never # default: change
     on_failure: always # default: always
+
 env:
   global:
     - CODECOV_TOKEN="bb1638cf-0dcf-49b0-b968-54165d8a678a"
