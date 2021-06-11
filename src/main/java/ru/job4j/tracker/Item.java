@@ -1,19 +1,14 @@
 package ru.job4j.tracker;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
-public class Item {
+public class Item implements Comparable<Item> {
     private int id;
     private String name;
     private final LocalDateTime created = LocalDateTime.now();
 
     public Item() {
-    }
-
-    @Override
-    public String toString() {
-        return "Item{" + "id=" + id + ", name='" + name + '\'' + ", created=" + created + '}';
     }
 
     public Item(int id) {
@@ -47,5 +42,34 @@ public class Item {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" + "id=" + id + ", name='" + name + '\'' + ", created=" + created + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Item)) {
+            return false;
+        }
+        Item item = (Item) o;
+        return getId() == item.getId() && Objects.equals(getName(),
+                item.getName()) && Objects.equals(getCreated(), item.getCreated());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getCreated());
+    }
+
+    //сортировка по айди
+    @Override
+    public int compareTo(Item another) {
+        return Integer.compare(id, another.id);
     }
 }
