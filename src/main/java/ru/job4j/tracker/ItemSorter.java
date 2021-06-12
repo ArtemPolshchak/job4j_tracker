@@ -15,13 +15,10 @@ public class ItemSorter {
         return items;
     }
 
-    /*
     public List<Item> itemSortByID(List<Item> items) {
         Collections.sort(items);
         return items;
     }
-
-     */
 
     public List<Item> itemReverseSortByID(List<Item> items) {
         items.sort(Collections.reverseOrder());

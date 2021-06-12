@@ -50,7 +50,7 @@ public class ItemSorterTest {
         assertThat(sorter.itemReverseSortByName(items1), is(itemsSorted));
 
     }
-/*
+
     @Test
     public void whenSortByIdItem() {
         List<Item>  items1 = Arrays.asList(
@@ -91,6 +91,4 @@ public class ItemSorterTest {
         ItemSorter sorter = new ItemSorter();
         assertThat(sorter.itemReverseSortByID(items1), is(itemsSorted));
     }
-
- */
 }
