@@ -11,7 +11,7 @@ public class ItemSorter {
     }
 
     public List<Item> itemReverseSortByName(List<Item> items) {
-        items.sort(new SortByNameItem().reversed());
+        items.sort(new SortReverseByName());
         return items;
     }
 
