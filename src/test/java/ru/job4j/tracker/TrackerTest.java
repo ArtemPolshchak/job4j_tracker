@@ -30,7 +30,8 @@ public class TrackerTest {
         Item bugWithDesc = new Item();
         bugWithDesc.setName("Bug with description");
         tracker.replace(id, bugWithDesc);
-        assertThat(Objects.requireNonNull(tracker.findById(id)).getName(), is("Bug with description"));
+        assertThat(Objects.requireNonNull(tracker.findById(id)).getName(),
+                is("Bug with description"));
     }
 
     @Test

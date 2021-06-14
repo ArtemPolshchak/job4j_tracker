@@ -27,12 +27,10 @@ public class FullSearchTest {
                 new Task("1", "First desc"),
                 new Task("3", "First disc"),
                 new Task("4", "Second desc"),
-                new Task("5", "First desc") ,
+                new Task("5", "First desc"),
                 new Task("3", "First desc")
         );
         Set<String> expected = new HashSet<>(Arrays.asList("1", "2", "3", "4", "5"));
         assertThat(FullSearch.extraNumber(tasks), is(expected));
     }
-
-
 }

@@ -1,7 +1,6 @@
-package ru.job4j.tracker.Items;
+package ru.job4j.tracker.items;
 
 import ru.job4j.tracker.Item;
-import ru.job4j.tracker.Tracker;
 
 public class TrackerSingle1 {
     private static TrackerSingle1 instance;

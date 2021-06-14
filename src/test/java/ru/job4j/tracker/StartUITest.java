@@ -33,7 +33,9 @@ public class StartUITest {
         };
         new StartUI(output).init(in, tracker, Arrays.asList(actions));
         assertThat(output.toString(),
-                is("Menu." + is + "0. === Show all items ===" + is + "1. Exit" + is + item1 + is + item2 + is + "Menu." + is + "0. === Show all items ===" + is + "1. Exit" + is));
+                is("Menu." + is + "0. === Show all items ==="
+                        + is + "1. Exit" + is + item1 + is + item2 + is
+                        + "Menu." + is + "0. === Show all items ===" + is + "1. Exit" + is));
     }
 
     @Test
@@ -137,7 +139,10 @@ public class StartUITest {
         };
         new StartUI(output).init(in, tracker, Arrays.asList(actions));
         assertThat(output.toString(),
-                is("Menu." + is + "0. === Find items by name ===" + is + "1. Exit" + is + item.getName() + is + "Menu." + is + "0. === Find items by name ===" + is + "1. Exit" + is));
+                is("Menu." + is + "0. === Find items by name ==="
+                        + is + "1. Exit" + is + item.getName()
+                        + is + "Menu." + is + "0. === Find items by name ==="
+                        + is + "1. Exit" + is));
     }
 
     @Test
@@ -154,6 +159,9 @@ public class StartUITest {
                 new Exit(output)
         };
         new StartUI(output).init(in, tracker, Arrays.asList(actions));
-        assertThat(output.toString(), is("Menu." + is + "0. === Find item by id ===" + is + "1. Exit" + is + "Founded item: " + item.getName() + is + "Menu." + is + "0. === Find item by id ===" + is + "1. Exit" + is));
+        assertThat(output.toString(), is("Menu."
+                + is + "0. === Find item by id ===" + is
+                + "1. Exit" + is + "Founded item: " + item.getName()
+                + is + "Menu." + is + "0. === Find item by id ===" + is + "1. Exit" + is));
     }
 }

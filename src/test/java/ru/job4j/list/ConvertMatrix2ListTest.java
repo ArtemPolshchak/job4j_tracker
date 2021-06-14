@@ -21,6 +21,7 @@ public class ConvertMatrix2ListTest {
         List<Integer> result = list.toList(input);
         assertThat(result, is(expect));
     }
+
     @Test
     public void when2on3ArrayThenList6() {
         ConvertMatrix2List list = new ConvertMatrix2List();
@@ -35,6 +36,7 @@ public class ConvertMatrix2ListTest {
         List<Integer> result = list.toList(input);
         assertThat(result, is(expect));
     }
+
     @Test
     public void when2on2ArrayThenList6() {
         ConvertMatrix2List list = new ConvertMatrix2List();

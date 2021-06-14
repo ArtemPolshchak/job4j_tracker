@@ -13,8 +13,9 @@ public class College {
         student.setDateOfBeginStudy(new Date(19, Calendar.OCTOBER, 2020));
 
         System.out.println(
-                student.getName() + " " +
-                student.getLastName() + " поступил на курс по программированию " +
-                student.getGroup() + " " + student.getDateOfBeginStudy());
+                student.getName() + " "
+                        + student.getLastName()
+                        + " поступил на курс по программированию "
+                        + student.getGroup() + " " + student.getDateOfBeginStudy());
     }
 }

@@ -1,7 +1,8 @@
 package ru.job4j.oop;
 
 public class Shop {
-    private static Object LiquidationProduct;
+
+    private static Object liquidationProduct;
 
     public static void main(String[] args) {
         Product product = (Product) of("Oil", 100);
@@ -16,6 +17,7 @@ public class Shop {
     }
 
     private static LiquidationProduct getLiquidationProduct(String name, int price) {
-         return (LiquidationProduct) LiquidationProduct;
+         return (LiquidationProduct) liquidationProduct;
+
     }
 }

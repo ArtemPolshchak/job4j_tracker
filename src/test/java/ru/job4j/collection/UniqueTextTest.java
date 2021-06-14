@@ -26,6 +26,7 @@ public class UniqueTextTest {
         String text = "My cat eats a mouse";
         assertThat(UniqueText.isEquals(origin, text), is(true));
     }
+
     @Test
     public void isEql3() {
         String origin = "My cat eats a mouse and drink water";

@@ -15,6 +15,6 @@ public class Jukebox {
         Jukebox box = new Jukebox();
         box.music(1);
         box.music(2);
-        box.music(0);;
+        box.music(0);
     }
 }

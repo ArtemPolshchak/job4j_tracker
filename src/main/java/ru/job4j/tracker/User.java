@@ -25,10 +25,9 @@ public class User {
 
     @Override
     public String toString() {
-        return "ru.job4j.tracker.User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "ru.job4j.tracker.User{" 
+                + "id=" + id + ", username='"
+                + username + '\'' + ", password='"
+                + password + '\'' + '}';
     }
 }

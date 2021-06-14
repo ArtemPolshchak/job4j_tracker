@@ -2,16 +2,16 @@ package ru.job4j.pojo;
 
 public class Library {
     public static <books> void main(String[] args) {
-        Book CleanCode = new Book("Чистый Код", "Роберт Мартин" );
-        Book JavaPhilosophy = new Book("Философия Java", "Брюс Эккель");
-        Book JavaCompleteGuide = new Book("Java Полное Руководство", "Герберт Шилдт");
-        Book RockingAlgorithms = new Book("Грокаем Алгоритмы", "Адитья Бхаргава");
+        Book cleanCode = new Book("Чистый Код", "Роберт Мартин");
+        Book javaPhilosophy = new Book("Философия Java", "Брюс Эккель");
+        Book javaCompleteGuide = new Book("Java Полное Руководство", "Герберт Шилдт");
+        Book rockingAlgorithms = new Book("Грокаем Алгоритмы", "Адитья Бхаргава");
 
         Book[] books = new Book[4];
-        books[0] = CleanCode;
-        books[1] = JavaPhilosophy;
-        books[2] = JavaCompleteGuide;
-        books[3] = RockingAlgorithms;
+        books[0] = cleanCode;
+        books[1] = javaPhilosophy;
+        books[2] = javaCompleteGuide;
+        books[3] = rockingAlgorithms;
 
         for (Book arrayBook : books) {
             System.out.println(arrayBook.getNameOfBook() + " - " + arrayBook.getBookAuthor());
@@ -29,12 +29,11 @@ public class Library {
 
         System.out.println();
 
-        for (int i = 0; i < books.length; i++) {
-            if (books[i].getNameOfBook().equals("Чистый Код")) {
-                System.out.println(books[i].getNameOfBook() + " - " + books[i].getBookAuthor());
+        for (Book book : books) {
+            if (book.getNameOfBook().equals("Чистый Код")) {
+                System.out.println(book.getNameOfBook() + " - " + book.getBookAuthor());
                 break;
             }
-
         }
 
         }

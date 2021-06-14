@@ -15,7 +15,5 @@ public class UsageMap {
             String value = entry.getValue();
             System.out.println(key + " = " + value);
         }
-
-
     }
 }

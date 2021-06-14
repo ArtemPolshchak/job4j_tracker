@@ -4,6 +4,11 @@ import java.util.Date;
 import java.util.Objects;
 
 public class License {
+    private String model;
+    private String code;
+    private Date created;
+    private String owner;
+
     public String getOwner() {
         return owner;
     }
@@ -40,25 +45,23 @@ public class License {
         return this;
     }
 
-    private String owner;
-
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         License license = (License) o;
-        return Objects.equals(owner, license.owner) &&
-                Objects.equals(model, license.model) &&
-                Objects.equals(code, license.code) &&
-                Objects.equals(created, license.created);
+        return Objects.equals(owner, license.owner)
+                && Objects.equals(model, license.model)
+                && Objects.equals(code, license.code)
+                && Objects.equals(created, license.created);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(owner, model, code, created);
     }
-
-    private String model;
-    private String code;
-    private Date created;
 }

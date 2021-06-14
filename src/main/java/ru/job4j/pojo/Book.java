@@ -5,6 +5,11 @@ Book {
     private String nameOfBook;
     private String bookAuthor;
 
+    public Book(String nameOfBook, String bookAuthor) {
+        this.nameOfBook = nameOfBook;
+        this.bookAuthor = bookAuthor;
+    }
+
     public String getNameOfBook() {
         return nameOfBook;
     }
@@ -14,17 +19,13 @@ Book {
         return this;
     }
 
-    public String getBookAuthor() {
-        return bookAuthor;
-    }
-
     public Book setBookAuthor(String bookAuthor) {
         this.bookAuthor = bookAuthor;
         return this;
     }
 
-    public Book(String nameOfBook, String bookAuthor) {
-        this.nameOfBook = nameOfBook;
-        this.bookAuthor = bookAuthor;
+    public String getBookAuthor() {
+        return bookAuthor;
     }
+
 }
