@@ -4,9 +4,9 @@ import java.util.HashSet;
 import java.util.List;
 
 public class NotifyAccount {
-    public static HashSet<Account1> sent(List<Account1> accounts) {
-        HashSet<Account1> rsl = new HashSet<>();
-        for (Account1 account : accounts) {
+    public static HashSet<Account> sent(List<Account> accounts) {
+        HashSet<Account> rsl = new HashSet<>();
+        for (Account account : accounts) {
             rsl.add(account);
         }
 

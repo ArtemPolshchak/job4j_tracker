@@ -2,12 +2,12 @@ package ru.job4j.objects;
 
 import java.util.Objects;
 
-public class Account1 {
+public class Account {
     private String passport;
     private String username;
     private String deposit;
 
-    public Account1(String passport, String username, String deposit) {
+    public Account(String passport, String username, String deposit) {
         this.passport = passport;
         this.username = username;
         this.deposit = deposit;
@@ -21,7 +21,7 @@ public class Account1 {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Account1 account = (Account1) o;
+        Account account = (Account) o;
         return Objects.equals(passport, account.passport);
     }
 
