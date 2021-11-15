@@ -50,7 +50,10 @@ public class Student {
             return false;
         }
         Student student = (Student) o;
-        return Objects.equals(getName(), student.getName()) && Objects.equals(getAccount(), student.getAccount()) && Objects.equals(getGroup(), student.getGroup());
+        return Objects.equals(getName(),
+                student.getName()) && Objects.equals(getAccount(),
+                student.getAccount()) && Objects.equals(getGroup(),
+                student.getGroup());
     }
 
     @Override
