@@ -15,23 +15,21 @@ public class College {
     }
 
     public Student findByAccount(String account) {
-        for (Student s : students.keySet()) {
-            if (s.getAccount().equals(account)) {
-                return s;
-            }
-        }
-        return null;
+        return students.keySet()
+                .stream()
+                .filter(s -> s.getAccount().equals(account))
+                .findFirst()
+                .orElse(null);
     }
 
     public Subject findBySubjectName(String account, String name) {
         Student a = findByAccount(account);
         if (a != null) {
-            Set<Subject> subjects = students.get(a);
-            for (Subject s : subjects) {
-                if (s.getName().equals(name)) {
-                    return s;
-                }
-            }
+            return students.get(a)
+                    .stream()
+                    .filter(s -> s.getName().equals(name))
+                    .findFirst()
+                    .orElse(null);
         }
         return null;
     }
