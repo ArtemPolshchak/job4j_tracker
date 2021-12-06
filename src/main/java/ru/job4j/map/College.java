@@ -3,10 +3,6 @@ package ru.job4j.map;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * @author Artem Polshchak on 29.10.2021.
- * @project job4j-tracker
- */
 public class College {
     private final Map<Student, Set<Subject>> students;
 
