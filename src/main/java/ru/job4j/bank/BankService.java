@@ -57,14 +57,10 @@ public class BankService {
      * @return возвращает искомого пользователя, если он есть в списке.
      */
     public User findByPassport(String passport) {
-        User rsl = null;
-        for (User user : users.keySet()) {
-            if (user.getPassport().equals(passport)) {
-                rsl = user;
-                break;
-            }
-        }
-        return rsl;
+        return users.keySet().stream()
+                .filter(s -> s.getPassport().equals(passport))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
@@ -73,21 +69,17 @@ public class BankService {
      * @param requisite приходит на вход метода, для поиска реквизитов данного пользователя
      * @return возвращает аккаунт владельца пасспорта
      */
-    public Account findByRequisite(String passport, String requisite) {
-        Account result = null;
 
+    public Account findByRequisite(String passport, String requisite) {
         User user = findByPassport(passport);
         if (user != null) {
-            List<Account> accounts = users.get(user);
-            for (Account account : accounts) {
-                if (account.getRequisite().equals(requisite)) {
-                    result = account;
-                    break;
-                }
-            }
+            return users.get(user)
+                    .stream()
+                    .filter(s -> s.getRequisite().equals(requisite))
+                    .findFirst()
+                    .orElse(null);
         }
-
-        return result;
+        return null;
     }
 
     /**
@@ -102,6 +94,7 @@ public class BankService {
      * @param amount количество средств, которые нужно перевести с первогона второй аккаунт
      * @return если оба пользователя найдены, и средств достаточно, метод возвращает true
      */
+
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite, double amount) {
         boolean rsl = false;
