@@ -14,16 +14,20 @@ public class Student {
     }
 
     public Student(int score, String surname) {
-        this.score = score;
         this.surname = surname;
+        this.score = score;
     }
 
-    public int getScore() {
-        return score;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getSurname() {
         return surname;
+    }
+
+    public int getScore() {
+        return score;
     }
 
     @Override
