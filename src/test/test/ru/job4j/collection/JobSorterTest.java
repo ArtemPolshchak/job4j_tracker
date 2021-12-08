@@ -99,7 +99,7 @@ public class JobSorterTest {
                 new Job("d", 0)
         );
 
-        List<Job> res = Arrays.asList(
+        List<Job> res = List.of(
                 new Job("d", 0),
                 new Job("c", 2),
                 new Job("b", 4),
@@ -121,7 +121,7 @@ public class JobSorterTest {
 
         );
 
-        List<Job> res = Arrays.asList(
+        List<Job> res = List.of(
 
                 new Job("Sort", 4),
                 new Job("Art", 1),
@@ -144,7 +144,7 @@ public class JobSorterTest {
                 new Job("d", 0)
         );
 
-        List<Job> res = Arrays.asList(
+        List<Job> res = List.of(
 
                 new Job("b", 4),
                 new Job("c", 2),
@@ -167,7 +167,7 @@ public class JobSorterTest {
                 new Job("b", 4),
                 new Job("a", 1)
         );
-        List<Job> res = Arrays.asList(
+        List<Job> res = List.of(
                 new Job("a", 1),
                 new Job("b", 4),
                 new Job("c", 2),
@@ -188,7 +188,7 @@ public class JobSorterTest {
                 new Job("I", 0)
         );
 
-        List<Job> res = Arrays.asList(
+        List<Job> res = List.of(
                 new Job("I", 0),
                 new Job("hi", 2),
                 new Job("bro", 4),
@@ -209,7 +209,7 @@ public class JobSorterTest {
                 new Job("d", 0)
         );
 
-        List<Job> res = Arrays.asList(
+        List<Job> res = List.of(
                 new Job("d", 0),
                 new Job("a", 1),
                 new Job("c", 2),
