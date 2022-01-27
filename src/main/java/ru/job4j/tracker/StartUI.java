@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class StartUI {
+
     private final Output out;
 
     public StartUI(Output out) {
