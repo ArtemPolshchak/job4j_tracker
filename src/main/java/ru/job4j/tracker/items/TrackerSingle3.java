@@ -1,6 +1,6 @@
 package ru.job4j.tracker.items;
 
-import ru.job4j.tracker.Item;
+import ru.job4j.tracker.model.Item;
 
 public class TrackerSingle3 {
     private TrackerSingle3() {
