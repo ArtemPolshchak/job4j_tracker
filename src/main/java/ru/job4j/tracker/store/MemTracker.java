@@ -1,9 +1,16 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.store;
+
+import ru.job4j.tracker.model.Item;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public final class Tracker {
+/**
+ * @author artem.polschak@gmail.com on 24.06.2022.
+ * @project job4j_tracker
+ */
+
+public final class MemTracker implements Store {
     private final List<Item> items = new ArrayList<>();
     private int ids = 1;
 
@@ -20,9 +27,9 @@ public final class Tracker {
     public List<Item> findByName(String key) {
         List<Item> copyNames = new ArrayList<>();
         for (Item item : items) {
-                if (key.equals(item.getName())) {
-                    copyNames.add(item);
-                }
+            if (key.equals(item.getName())) {
+                copyNames.add(item);
+            }
         }
         return copyNames;
     }
@@ -50,7 +57,7 @@ public final class Tracker {
             item.setId(id);
             items.set(index, item);
         }
-            return rsl;
+        return rsl;
     }
 
     public boolean delete(int id) {

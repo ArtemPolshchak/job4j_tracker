@@ -1,14 +1,32 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.model;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+/**
+ * @author artem.polschak@gmail.com on 24.06.2022.
+ * @project job4j_tracker
+ */
+
 public class Item implements Comparable<Item> {
+
+    private static final DateTimeFormatter FORMATTER =
+            DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
     private int id;
+
     private String name;
-    private final LocalDateTime created = LocalDateTime.now();
+
+    private LocalDateTime created = LocalDateTime.now();
 
     public Item() {
+        created = LocalDateTime.now();
+    }
+
+    public Item(LocalDateTime t) {
+        created = t;
     }
 
     public Item(int id) {
@@ -22,6 +40,12 @@ public class Item implements Comparable<Item> {
     public Item(int id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public Item(int id, String name, LocalDateTime created) {
+        this.id = id;
+        this.name = name;
+        this.created = created;
     }
 
     public LocalDateTime getCreated() {
@@ -46,7 +70,7 @@ public class Item implements Comparable<Item> {
 
     @Override
     public String toString() {
-        return "Item{" + "id=" + id + ", name='" + name + '\'' + '}';
+        return String.format("id: %s, name: %s, created: %s", id, name, FORMATTER.format(created));
     }
 
     @Override
@@ -54,17 +78,16 @@ public class Item implements Comparable<Item> {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Item)) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
         Item item = (Item) o;
-        return getId() == item.getId() && Objects.equals(getName(),
-                item.getName());
+        return Objects.equals(id, item.id) && Objects.equals(name, item.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getCreated());
+        return Objects.hash(id, name);
     }
 
     @Override

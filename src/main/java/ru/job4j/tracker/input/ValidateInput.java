@@ -1,13 +1,14 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.input;
+
+import ru.job4j.tracker.output.Output;
 
 public class ValidateInput implements Input {
-    private final Output out;
+   private final Output out;
     private final Input in;
 
     public ValidateInput(Output out, Input in) {
         this.out = out;
         this.in = in;
-
     }
 
     @Override
@@ -26,6 +27,23 @@ public class ValidateInput implements Input {
                 invalid = false;
             } catch (NumberFormatException nfe) {
                 out.println("Please enter validate data again");
+            }
+        } while (invalid);
+        return value;
+    }
+
+    @Override
+    public int askInt(String question, int max) {
+        boolean invalid = true;
+        int value = -1;
+        do {
+            try {
+                value = in.askInt(question, max);
+                invalid = false;
+            } catch (IllegalStateException moe) {
+                System.out.println("Please select key from menu.");
+            } catch (NumberFormatException nfe) {
+                System.out.println("Please enter validate data again.");
             }
         } while (invalid);
         return value;

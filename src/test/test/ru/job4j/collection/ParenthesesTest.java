@@ -5,6 +5,12 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
+/**
+ * @author Artem.polschak@gmail.com on 14.02.2022.
+ * @project job4j_tracker
+ * метод проверки корректности открытых и закрытых скобок.
+ */
+
 public class ParenthesesTest {
 
     @Test

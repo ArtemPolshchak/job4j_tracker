@@ -1,6 +1,17 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.action;
+
+import ru.job4j.tracker.input.Input;
+import ru.job4j.tracker.model.Item;
+import ru.job4j.tracker.store.MemTracker;
+import ru.job4j.tracker.output.Output;
+import ru.job4j.tracker.store.Store;
 
 import java.util.List;
+
+/**
+ * @author artem.polschak@gmail.com on 24.06.2022.
+ * @project job4j_tracker
+ */
 
 public class FindByNameAction implements UserAction {
     private final Output out;
@@ -15,9 +26,9 @@ public class FindByNameAction implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
-        String name = input.askStr("enter Name of Item");
-        List<Item> item = tracker.findByName(name);
+    public boolean execute(Input input, Store store) {
+        String name = input.askStr("Enter name: ");
+        List<Item> item = store.findByName(name);
 
         if (item.size() == 0) {
             out.println("Error, we can`t find item");
