@@ -35,7 +35,7 @@ public class FindByNameAction implements UserAction {
         } else {
             for (Item value : item) {
 
-                out.println(value.getName());
+                out.println(value.toString());
             }
         }
         return true;

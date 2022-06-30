@@ -24,7 +24,7 @@ public class FindByIdAction implements UserAction {
         Item item = store.findById(id);
 
         if (item != null) {
-            out.println("Founded item: " + item.getName());
+            out.println("Founded item: " + item.toString());
         } else {
             out.println("Wrong id! Not found");
         }
