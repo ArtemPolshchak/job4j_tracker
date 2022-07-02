@@ -17,6 +17,13 @@ public class SqlTracker implements Store, AutoCloseable {
 
     private Connection cn;
 
+    public SqlTracker() {
+    }
+
+    public SqlTracker(Connection connection) {
+        this.cn = connection;
+    }
+
     /**
      * Method connection to DB
       */
@@ -37,14 +44,6 @@ public class SqlTracker implements Store, AutoCloseable {
     }
 
     /**
-     * Method closing DB connection
-     */
-    @Override
-    public void close() throws Exception {
-        cn.close();
-    }
-
-    /**
      * Method add new Item to DB
      * @param item which adding to DB
      * @return item
@@ -52,12 +51,17 @@ public class SqlTracker implements Store, AutoCloseable {
     @Override
     public Item add(Item item) {
         try (PreparedStatement statement =
-                     cn.prepareStatement("insert into items(name, created) values (?, ?)")) {
+                     cn.prepareStatement(
+                             "insert into items(name, created) values (?, ?) returning id;")) {
             Timestamp timestamp = Timestamp.valueOf(item.getCreated());
             statement.setString(1, item.getName());
             statement.setTimestamp(2, timestamp);
             statement.execute();
-
+            try (ResultSet resultSet = statement.getResultSet()) {
+                if (resultSet.next()) {
+                    item.setId(resultSet.getInt(1));
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -68,7 +72,6 @@ public class SqlTracker implements Store, AutoCloseable {
      * Method replace old item to new one
      * @param id from old item
      * @param item which will be added to replace the old
-     * @return
      */
     @Override
     public boolean replace(int id, Item item) {
@@ -109,16 +112,14 @@ public class SqlTracker implements Store, AutoCloseable {
      * Method takes data from the DB to create an item
      * @param resultSet DB
      * @return item with data
-     * @throws SQLException
      */
     private Item extracted(ResultSet resultSet) throws SQLException {
-        Item item = new Item();
-        Timestamp localDateTime = resultSet.getTimestamp("created");
-        LocalDateTime localDateTime1 = localDateTime.toLocalDateTime();
-        item.setId(resultSet.getInt("id"));
-        item.setName(resultSet.getString("name"));
-        item.setCreated(localDateTime1);
-        return item;
+        
+        return new Item(
+                resultSet.getInt("id"),
+                resultSet.getString("name"),
+                resultSet.getTimestamp("created").toLocalDateTime()
+        );
     }
 
     /**
@@ -182,5 +183,13 @@ public class SqlTracker implements Store, AutoCloseable {
             e.printStackTrace();
         }
         return item;
+    }
+
+    /**
+     * Method closing DB connection
+     */
+    @Override
+    public void close() throws Exception {
+        cn.close();
     }
 }
