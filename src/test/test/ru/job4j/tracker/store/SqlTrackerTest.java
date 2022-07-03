@@ -11,15 +11,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Properties;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.*;
 
 /**
- * @author User on 01.07.2022.
+ * @author artem.polschak@gmail.com on 03.07.2022.
  * @project job4j_tracker
  */
 public class SqlTrackerTest {
@@ -37,7 +37,6 @@ public class SqlTrackerTest {
                     config.getProperty("url"),
                     config.getProperty("username"),
                     config.getProperty("password")
-
             );
         } catch (Exception e) {
             throw new IllegalStateException(e);
@@ -66,18 +65,19 @@ public class SqlTrackerTest {
 
     @Test
     public void whenAddNewItemAndFindByName() {
-        SqlTracker tracker = new SqlTracker(connection);
-        tracker.add(new Item("itemForWork"));
-        assertThat(tracker.findByName("itemForWork").size(), is(1));
+        var tracker = new SqlTracker(connection);
+        var item = tracker.add(new Item("test"));
+        var result = tracker.findByName("test");
+        assertEquals(List.of(item), result);
     }
 
     @Test
-    public void whenFindAll() {
-        SqlTracker tracker = new SqlTracker(connection);
-        tracker.add(new Item("first"));
-        tracker.add(new Item("second"));
-        tracker.add(new Item("third"));
-        assertThat(tracker.findAll().size(), is(3));
+    public void whenAddNewItemsAndFindAll() {
+        var tracker = new SqlTracker(connection);
+        var item = tracker.add(new Item("test"));
+        var item1 = tracker.add(new Item("test1"));
+        var result = tracker.findAll();
+        assertEquals(List.of(item, item1), result);
     }
 
     @Test
