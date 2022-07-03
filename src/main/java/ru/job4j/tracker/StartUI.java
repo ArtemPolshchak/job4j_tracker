@@ -37,6 +37,7 @@ public class StartUI {
         for (int index = 0; index < actions.size(); index++) {
             out.println(index + ". " + actions.get(index).name());
         }
+
     }
 
     public static void main(String[] args) {
