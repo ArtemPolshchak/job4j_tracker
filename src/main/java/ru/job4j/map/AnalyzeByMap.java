@@ -58,11 +58,8 @@ public class AnalyzeByMap {
 
         for (Pupil p : pupils) {
             for (Subject s : p.subjects()) {
-                if (!map.containsKey(s.name())) {
-                    map.put(s.name(), s.score());
-                } else {
-                    map.replace(s.name(), map.get(s.name()) + s.score());
-                }
+                int score = map.getOrDefault(s.name(), 0);
+                map.put(s.name(), score + s.score());
             }
         }
 
@@ -103,11 +100,8 @@ public class AnalyzeByMap {
 
         for (Pupil p : pupils) {
             for (Subject s : p.subjects()) {
-                if (!map.containsKey(s.name())) {
-                    map.put(s.name(), s.score());
-                } else {
-                    map.replace(s.name(), map.get(s.name()) + s.score());
-                }
+                int score = map.getOrDefault(s.name(), 0);
+                map.put(s.name(), score + s.score());
             }
         }
 
