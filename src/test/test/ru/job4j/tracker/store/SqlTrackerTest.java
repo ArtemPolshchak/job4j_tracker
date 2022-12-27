@@ -1,9 +1,6 @@
 package ru.job4j.tracker.store;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import ru.job4j.tracker.model.Item;
 
 import java.io.InputStream;
@@ -22,6 +19,7 @@ import static org.junit.Assert.*;
  * @author artem.polschak@gmail.com on 03.07.2022.
  * @project job4j_tracker
  */
+@Ignore
 public class SqlTrackerTest {
 
     private static Connection connection;
