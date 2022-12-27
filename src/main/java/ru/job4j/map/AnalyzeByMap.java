@@ -8,6 +8,7 @@ import java.util.*;
  * The class gets statistics on passports.
  */
 public class AnalyzeByMap {
+
     /**
      * method calculate the overall average score.
      * @param pupils list with students
