@@ -2,34 +2,30 @@ package ru.job4j.tracker.action;
 
 import ru.job4j.tracker.input.Input;
 import ru.job4j.tracker.model.Item;
-import ru.job4j.tracker.store.MemTracker;
 import ru.job4j.tracker.output.Output;
 import ru.job4j.tracker.store.Store;
 
-import java.util.List;
-
-/**
- * @author artem.polschak@gmail.com on 24.06.2022.
- * @project job4j_tracker
- */
-
-public class FindAllAction implements UserAction {
+public class Replace implements UserAction {
     private final Output out;
 
-    public FindAllAction(Output out) {
+    public Replace(Output out) {
         this.out = out;
     }
 
     @Override
     public String name() {
-        return "=== Show all items ===";
+        return "=== Edit item ===";
     }
 
     @Override
     public boolean execute(Input input, Store store) {
-        List<Item> item  = store.findAll();
-        for (Item value : item) {
-            out.println(value);
+        int id = Integer.parseInt(input.askStr("Enter id: "));
+        String name = input.askStr("Enter name: ");
+
+        if (store.replace(id, new Item(name))) {
+            out.println("Item is successfully replaced!");
+        } else {
+            out.println("Wrong id!");
         }
         return true;
     }

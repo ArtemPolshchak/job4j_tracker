@@ -4,11 +4,11 @@ import ru.job4j.tracker.output.Output;
 
 import java.util.Scanner;
 
-public class ConsoleInput implements Input {
+public class Console implements Input {
     private Scanner scanner = new Scanner(System.in);
     private final Output out;
 
-    public ConsoleInput(Output out) {
+    public Console(Output out) {
         this.out = out;
     }
 

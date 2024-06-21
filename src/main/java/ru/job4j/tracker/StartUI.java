@@ -1,10 +1,9 @@
 package ru.job4j.tracker;
 
 import ru.job4j.tracker.action.*;
-import ru.job4j.tracker.input.ConsoleInput;
 import ru.job4j.tracker.input.Input;
-import ru.job4j.tracker.input.ValidateInput;
-import ru.job4j.tracker.output.ConsoleOutput;
+import ru.job4j.tracker.input.Validate;
+import ru.job4j.tracker.output.Console;
 import ru.job4j.tracker.output.Output;
 import ru.job4j.tracker.store.SqlTracker;
 import ru.job4j.tracker.store.Store;
@@ -41,19 +40,19 @@ public class StartUI {
     }
 
     public static void main(String[] args) {
-        Output output = new ConsoleOutput();
-        Input input = new ValidateInput(output, new ConsoleInput(output));
+        Output output = new Console();
+        Input input = new Validate(output, new ru.job4j.tracker.input.Console(output));
 
         try (SqlTracker tracker = new SqlTracker()) {
             tracker.init();
             List<UserAction> actions = List.of(
-                    new CreateAction(output),
-                    new ReplaceAction(output),
-                    new DeleteAction(output),
-                    new FindAllAction(output),
-                    new FindByIdAction(output),
-                    new FindByNameAction(output),
-                    new ExitAction(output)
+                    new Create(output),
+                    new Replace(output),
+                    new Delete(output),
+                    new FindAll(output),
+                    new FindById(output),
+                    new FindByName(output),
+                    new Exit(output)
             );
             new StartUI(output).init(input, tracker, actions);
         } catch (Exception e) {

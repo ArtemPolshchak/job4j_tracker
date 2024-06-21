@@ -2,11 +2,11 @@ package ru.job4j.tracker.input;
 
 import ru.job4j.tracker.output.Output;
 
-public class ValidateInput implements Input {
+public class Validate implements Input {
    private final Output out;
     private final Input in;
 
-    public ValidateInput(Output out, Input in) {
+    public Validate(Output out, Input in) {
         this.out = out;
         this.in = in;
     }
