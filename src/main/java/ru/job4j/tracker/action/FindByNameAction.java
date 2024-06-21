@@ -12,23 +12,30 @@ import java.util.List;
  * @project job4j_tracker
  */
 
-public class FindAll implements UserAction {
+public class FindByNameAction implements UserAction {
     private final Output out;
 
-    public FindAll(Output out) {
+    public FindByNameAction(Output out) {
         this.out = out;
     }
 
     @Override
     public String name() {
-        return "=== Show all items ===";
+        return "=== Find items by name ===";
     }
 
     @Override
     public boolean execute(Input input, Store store) {
-        List<Item> item  = store.findAll();
-        for (Item value : item) {
-            out.println(value);
+        String name = input.askStr("Enter name: ");
+        List<Item> item = store.findByName(name);
+
+        if (item.size() == 0) {
+            out.println("Error, we can`t find item");
+        } else {
+            for (Item value : item) {
+
+                out.println(value.toString());
+            }
         }
         return true;
     }

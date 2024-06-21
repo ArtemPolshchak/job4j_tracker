@@ -7,7 +7,7 @@ import ru.job4j.tracker.store.Store;
  * @author artem.polschak on 25.06.2022.
  * @project job4j_tracker
  */
-public class Stub implements UserAction {
+public class StubAction implements UserAction {
     private boolean call = false;
 
     @Override
