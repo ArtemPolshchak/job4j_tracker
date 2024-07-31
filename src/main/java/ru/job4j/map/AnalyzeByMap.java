@@ -58,8 +58,7 @@ public class AnalyzeByMap {
 
         for (Pupil p : pupils) {
             for (Subject s : p.subjects()) {
-                int score = map.getOrDefault(s.name(), 0);
-                map.put(s.name(), score + s.score());
+                map.merge(s.name(), s.score(), Integer::sum);
             }
         }
 
@@ -100,8 +99,7 @@ public class AnalyzeByMap {
 
         for (Pupil p : pupils) {
             for (Subject s : p.subjects()) {
-                int score = map.getOrDefault(s.name(), 0);
-                map.put(s.name(), score + s.score());
+               map.merge(s.name(), s.score(), Integer::sum);
             }
         }
 
