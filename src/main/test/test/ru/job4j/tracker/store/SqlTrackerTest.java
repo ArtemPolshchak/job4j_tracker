@@ -1,8 +1,12 @@
 package test.ru.job4j.tracker.store;
 
-import org.junit.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import ru.job4j.tracker.model.Item;
 import ru.job4j.tracker.store.SqlTracker;
+
 
 import java.io.InputStream;
 import java.sql.Connection;
@@ -12,20 +16,22 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 
-import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 /**
  * @author artem.polschak@gmail.com on 03.07.2022.
  * @project job4j_tracker
  */
-@Ignore
+
 public class SqlTrackerTest {
 
     private static Connection connection;
 
-    @BeforeClass
+    @BeforeAll
     public static void initConnection() {
         try (InputStream in =
                      SqlTrackerTest.class.getClassLoader().getResourceAsStream("test.properties")) {
@@ -42,12 +48,12 @@ public class SqlTrackerTest {
         }
     }
 
-    @AfterClass
+    @AfterAll
     public static void closeConnection() throws SQLException {
         connection.close();
     }
 
-    @After
+    @AfterEach
     public void wipeTable() throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement("delete from items")) {
             statement.execute();
@@ -59,7 +65,7 @@ public class SqlTrackerTest {
         SqlTracker tracker = new SqlTracker(connection);
         Item item = new Item("item");
         tracker.add(item);
-        assertThat(tracker.findById(item.getId()), is(item));
+        assertEquals(tracker.findById(item.getId()), item);
     }
 
     @Test
