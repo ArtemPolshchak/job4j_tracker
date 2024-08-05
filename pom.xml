@@ -34,14 +34,13 @@
         <profile>
             <id>production</id>
             <properties>
-                <db.url>jdbc:postgresql://127.0.0.1:5432/tracker</db.url>
+                <db.url>jdbc:postgresql://127.0.0.1:5432/postgres</db.url>
                 <db.username>postgres</db.username>
-                <db.password>password</db.password>
+                <db.password>postgres</db.password>
                 <db.driver>org.postgresql.Driver</db.driver>
             </properties>
         </profile>
     </profiles>
-
     <dependencies>
         <dependency>
             <groupId>com.h2database</groupId>
@@ -76,7 +75,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.2.16</version>
+            <version>42.7.3</version>
         </dependency>
         <dependency>
             <groupId>log4j</groupId>
@@ -88,10 +87,23 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.30</version>
         </dependency>
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>4.28.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
             <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>4.28.0</version>
+                <configuration>
+                    <propertyFile>src/main/java/resources/db/liquibase.properties</propertyFile>
+                </configuration>
+            </plugin>
+           <!-- <plugin>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>3.6.2</version>
@@ -112,7 +124,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -170,6 +182,25 @@
                     <source>16</source>
                     <target>16</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.12</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
