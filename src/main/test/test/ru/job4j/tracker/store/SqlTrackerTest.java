@@ -43,10 +43,12 @@ public class SqlTrackerTest {
                     config.getProperty("username"),
                     config.getProperty("password")
             );
+            System.out.println("Connection initialized successfully.");
         } catch (Exception e) {
             throw new IllegalStateException(e);
         }
     }
+
 
     @AfterAll
     public static void closeConnection() throws SQLException {
@@ -102,5 +104,22 @@ public class SqlTrackerTest {
         tracker.add(item);
         tracker.replace(item.getId(), item2);
         assertThat(tracker.findById(item.getId()).getName(), is("second"));
+    }
+
+    @Test
+    public void whenDeleteOneItemTHenTableIsNotCleared() {
+        SqlTracker tracker = new SqlTracker(connection);
+        Item item1 = new Item("item1");
+        Item item2 = new Item("item2");
+        Item item3 = new Item("item3");
+
+        tracker.add(item1);
+        tracker.add(item2);
+        tracker.add(item3);
+
+        tracker.delete(item2.getId());
+
+        List<Item> remainingItems = tracker.findAll();
+        assertEquals(List.of(item1, item3),remainingItems);
     }
 }
