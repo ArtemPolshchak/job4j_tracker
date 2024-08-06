@@ -43,7 +43,6 @@ public class SqlTrackerTest {
                     config.getProperty("username"),
                     config.getProperty("password")
             );
-            System.out.println("Connection initialized successfully.");
         } catch (Exception e) {
             throw new IllegalStateException(e);
         }
