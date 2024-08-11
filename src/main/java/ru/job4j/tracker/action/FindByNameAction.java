@@ -29,7 +29,7 @@ public class FindByNameAction implements UserAction {
         String name = input.askStr("Enter name: ");
         List<Item> item = store.findByName(name);
 
-        if (item.size() == 0) {
+        if (item.isEmpty()) {
             out.println("Error, we can`t find item");
         } else {
             for (Item value : item) {

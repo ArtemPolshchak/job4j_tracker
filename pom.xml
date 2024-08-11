@@ -21,7 +21,7 @@
         <profile>
             <id>test</id>
             <properties>
-                <liquibase.config>src/main/java/resources/db/liquibase_test.properties</liquibase.config>
+                <liquibase.config>src/main/resources/db/liquibase_test.properties</liquibase.config>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -30,11 +30,17 @@
         <profile>
             <id>production</id>
             <properties>
-                <liquibase.config>src/main/java/resources/db/liquibase.properties</liquibase.config>
+                <liquibase.config>src/main/resources/db/liquibase.properties</liquibase.config>
             </properties>
         </profile>
     </profiles>
     <dependencies>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>5.7.0</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

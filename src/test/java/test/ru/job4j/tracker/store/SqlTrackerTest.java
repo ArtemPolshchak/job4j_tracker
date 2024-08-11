@@ -34,7 +34,8 @@ public class SqlTrackerTest {
     @BeforeAll
     public static void initConnection() {
         try (InputStream in =
-                     SqlTrackerTest.class.getClassLoader().getResourceAsStream("test.properties")) {
+                     SqlTrackerTest.class.getClassLoader()
+                             .getResourceAsStream("liquibase_test.properties")) {
             Properties config = new Properties();
             config.load(in);
             Class.forName(config.getProperty("driver-class-name"));
@@ -47,7 +48,6 @@ public class SqlTrackerTest {
             throw new IllegalStateException(e);
         }
     }
-
 
     @AfterAll
     public static void closeConnection() throws SQLException {
@@ -119,6 +119,6 @@ public class SqlTrackerTest {
         tracker.delete(item2.getId());
 
         List<Item> remainingItems = tracker.findAll();
-        assertEquals(List.of(item1, item3),remainingItems);
+        assertEquals(List.of(item1, item3), remainingItems);
     }
 }

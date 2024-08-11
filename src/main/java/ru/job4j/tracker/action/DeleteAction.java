@@ -19,7 +19,7 @@ public class DeleteAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Store store) {
-        int id = Integer.parseInt(input.askStr("Enter id: "));
+        int id = input.askInt("Enter id: ");
         if (store.delete(id)) {
             out.println("Item is successfully deleted!");
         } else {

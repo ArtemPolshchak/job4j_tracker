@@ -19,11 +19,11 @@ public class FindByIdAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Store store) {
-        int id = Integer.parseInt(input.askStr("enter Id"));
+        int id = input.askInt("Enter id: ");
         Item item = store.findById(id);
 
         if (item != null) {
-            out.println("Founded item: " + item.toString());
+            out.println("Founded item: " + item);
         } else {
             out.println("Wrong id! Not found");
         }
