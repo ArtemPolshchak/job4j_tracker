@@ -1,30 +1,33 @@
 package ru.job4j.tracker.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 /**
- * @author artem.polschak@gmail.com
+ * @author artem.polschak@gmail.com on 24.06.2022.
+ * @project job4j_tracker
  */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Item implements Comparable<Item> {
 
     private static final DateTimeFormatter FORMATTER =
             DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
     private int id;
+
     private String name;
+
     private LocalDateTime created = LocalDateTime.now();
 
+    public Item() {
+        created = LocalDateTime.now();
+    }
+
     public Item(LocalDateTime t) {
-        this.created = t;
+        created = t;
     }
 
     public Item(int id) {
@@ -38,6 +41,12 @@ public class Item implements Comparable<Item> {
     public Item(int id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public Item(int id, String name, LocalDateTime created) {
+        this.id = id;
+        this.name = name;
+        this.created = created;
     }
 
     @Override
