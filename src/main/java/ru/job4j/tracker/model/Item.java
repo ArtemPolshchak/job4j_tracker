@@ -2,6 +2,7 @@ package ru.job4j.tracker.model;
 
 import lombok.Data;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -10,16 +11,18 @@ import java.util.Objects;
  * @author artem.polschak@gmail.com on 24.06.2022.
  * @project job4j_tracker
  */
+@Entity
+@Table(name = "items")
 @Data
 public class Item implements Comparable<Item> {
 
     private static final DateTimeFormatter FORMATTER =
             DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
-    private int id;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String name;
-
     private LocalDateTime created = LocalDateTime.now();
 
     public Item() {
