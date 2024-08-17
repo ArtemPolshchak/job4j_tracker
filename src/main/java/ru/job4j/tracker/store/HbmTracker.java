@@ -1,5 +1,6 @@
 package ru.job4j.tracker.store;
 
+import lombok.AllArgsConstructor;
 import org.hibernate.Session;
 import ru.job4j.tracker.model.Item;
 
@@ -10,6 +11,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+@AllArgsConstructor
 public class HbmTracker implements Store {
 
     private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
@@ -38,14 +40,16 @@ public class HbmTracker implements Store {
         Session session = sf.openSession();
         try {
             session.beginTransaction();
-            Item existingItem = session.get(Item.class, id);
+            int updatedCount = session.createQuery(
+            "UPDATE Item i SET i.name = :name, i.created = :created WHERE i.id = :id")
+            .setParameter("name", item.getName())
+                    .setParameter("created", item.getCreated())
+                    .setParameter("id", id)
+                    .executeUpdate();
 
-            existingItem.setName(item.getName());
-            existingItem.setCreated(item.getCreated());
-
-            session.update(existingItem);
             session.getTransaction().commit();
-            success = true;
+
+            success = updatedCount > 0;
 
         } catch (Exception e) {
             session.getTransaction().rollback();
@@ -81,6 +85,7 @@ public class HbmTracker implements Store {
         try {
             session.beginTransaction();
             result = session.createQuery("from Item", Item.class).list();
+            session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
@@ -98,6 +103,7 @@ public class HbmTracker implements Store {
             result = session.createQuery("from Item where name = :fkey", Item.class)
                     .setParameter("fkey", key)
                     .list();
+            session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
@@ -113,6 +119,7 @@ public class HbmTracker implements Store {
         try {
             session.beginTransaction();
             result = session.get(Item.class, id);
+            session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
